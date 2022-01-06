@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './init/keycloak-init.factory';
+import { ConfigInitService } from './init/config-init.service';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -45,7 +46,7 @@ export const createTranslateLoader = (http: HttpClient) => {
             provide: APP_INITIALIZER,
             useFactory: initializeKeycloak,
             multi: true,
-            deps: [KeycloakService]
+            deps: [KeycloakService, ConfigInitService]
         }
     ],
     bootstrap: [AppComponent]
